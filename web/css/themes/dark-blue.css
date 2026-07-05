@@ -1,0 +1,54 @@
+:root {
+  /* Основные цвета */
+  --color-text-primary: #e4f0ff;
+  --color-text-secondary: #b6cdff;
+  --color-text-tertiary: #8aa6e8;
+
+  /* Фоновые цвета (глубокий тёмно-синий - чтобы неон пробивался ярче) */
+  --color-bg-primary: #081024;
+  --color-bg-secondary: #0c1430;
+  --color-bg-container: rgba(16, 30, 60, 0.82);
+  --color-bg-container-alt: rgba(28, 48, 88, 0.72);
+  --color-bg-warning: rgba(255, 120, 80, 0.15);
+  --color-bg-modal: rgba(4, 8, 22, 0.95);
+  --color-bg-info: rgba(60, 180, 255, 0.22);
+  --color-bg-content: rgba(12, 24, 50, 0.6);
+  --color-bg-menu: #11233f;
+  --color-bg-guides-title: rgba(70, 200, 255, 0.2);
+  --bg-darker: #05091a;
+
+  /* Кнопка на сайте (неон-циан) */
+  --color-btn-primary: #38e0ff;
+  --color-btn-primary-hover: #8bf0ff;
+  --color-btn-primary-shadow: rgba(56, 224, 255, 0.5);
+
+  /* Цвета границ (ярче и насыщеннее для неон-свечения) */
+  --color-border-primary: rgba(70, 200, 255, 0.7);
+  --color-border-secondary: rgba(70, 200, 255, 0.45);
+  --color-border-container: rgba(90, 215, 255, 0.9);
+  --color-border-info: rgba(70, 190, 255, 0.6);
+  --color-border-alt: rgba(60, 170, 255, 0.4);
+
+  /* Цвета заголовков */
+  --color-heading-bg: rgba(60, 180, 255, 0.3);
+
+  /* Цвета ссылок и интерактивных элементов (яркий неон, ховер - СВЕТЛЕЕ) */
+  --color-link-primary: #5cd6ff;
+  --color-link-secondary: #38bdf8;
+  --color-link-hover: #aef0ff;
+  --color-link-warning: #ff6b6b;
+  --color-button-primary: #3b9bff;
+  --color-button-hover: #66bcff;
+  --color-code-bg: rgba(70, 200, 255, 0.18);
+
+  /* Цвета для эффектов (неоновый глитч логотипа) */
+  --color-glitch-primary: #00d8ff;
+  --color-glitch-secondary: #4d7bff;
+  --color-accent: #4ad7ff;
+
+  /* Цвета для уведомлений */
+  --color-success: #4cf0c4;
+  --color-warning: #ff6b6b;
+
+  --transition: all 0.3s ease;
+}

@@ -1,0 +1,48 @@
+/* Обработка поведения для мобильных устройств */
+@media (max-width: 768px) {
+  body {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .content-container {
+    width: 90%;
+  }
+
+  /* Скрытие логотипа */
+  .logo-glitch {
+    display: none;
+  }
+
+  .site-header {
+    width: 100%;
+    margin-top: 0;
+    border-radius: 0px;
+    border: 0;
+    border-bottom: 2px solid var(--color-border-primary);
+  }
+  .site-header__nav-link {
+    font-size: 20px;
+  }
+  .site-header__nav {
+    justify-content: center;
+  }
+
+  .site-footer {
+    width: 100%;
+    margin: 0;
+    border-radius: 0px;
+  }
+  .site-footer__content {
+    margin-bottom: 0;
+    border-radius: 0px;
+    border: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .content-container {
+    width: 95%;
+  }
+}
+

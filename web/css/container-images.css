@@ -1,0 +1,45 @@
+/* Класс для картинки в контейнере */
+.container-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* Класс для скриншотов в контейнере */
+.content-container .screenshot {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, z-index 0s ease 0.3s;
+  border-radius: 6px;
+}
+
+.content-container .screenshot:hover {
+  transform: scale(1.05);
+}
+
+/* Спойлер для картинок */
+.collapsible {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: var(--color-border-secondary);
+}
+
+.collapsible--warning {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: var(--color-bg-warning);
+}
+
+.collapsible__summary {
+  color: var(--color-text-primary);
+  font-size: 18px;
+}
+

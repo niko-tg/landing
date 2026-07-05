@@ -1,0 +1,18 @@
+/* Дизайн-токены (общие для всех тем): скругления и тени для глубины */
+:root {
+  --radius: 10px;
+  --radius-sm: 7px;
+  --radius-lg: 16px;
+  --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.20);
+  --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.30);
+}
+
+/* Без анимации по умолчанию */
+* {
+  transition: none;
+}
+
+/* Включаем плавную смену темы только когда активен класс */
+html.theme-transition * {
+  transition: all 0.3s ease;
+}

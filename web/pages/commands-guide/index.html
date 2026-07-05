@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+<head>
+  <!-- JS -->
+  <script type="module" src="/js/changeTheme.js"></script>
+  <!-- ALL -->
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>niko-bot - Гайд по командам</title>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+
+<!--
+  > САЙТИК НАПИСАН РУКАМИ
+  > И ОН ПРОСТОЙ КАК ПАЛКА...
+  > НО ВСЁ ЖЕ, ЕСЛИ ВЫ НАШЛИ BUG ИЛИ ОПЕЧАТКУ
+  > МОЙ TG: https://t.me/OxNiko
+
+  > ДЛЯ ВСЕХ ВИДОВ БОТОВ РАССТАВЛЕНЫ ЛОВУШКИ
+  > FUZZING БОТАМ ОСОБЕННО ПРИВЕТ
+  > СТУЧАТЬСЯ НА SSH - СЕБЕ БУДЕТ ДОРОЖЕ
+
+  > ФИНГЕРПРИНТЫ СОБИРАЮ, ДА...
+  > НО С ЦЕЛЬЮ ВЫЯВЛЕНИЯ АНОМАЛИЙ И СОСТАВЛЕНИЯ БЕЛОГО СПИСКА
+
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠤⠔⠀⠁⠲⠤⣤⡀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠒⠁⠀⢁⠂⠄⡠⠀⠠⢁⠡⠀⢍⠢⣀⠀⠜⢢⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠸⢦⠄⠀⣠⠊⠁⠀⣰⠄⡀⠙⠋⠳⠀⠁⠀⠠⣀⠠⢈⠊⠳⡄⡺⠖⠊⢹⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡄⠀⠙⡶⠁⡴⠂⡰⠃⢈⡆⠀⠇⠂⢸⠀⠀⠡⡈⢧⠀⠘⠒⠚⡥⠀⠀⣸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠔⠓⠳⣀⡼⢁⡜⠀⡰⠁⠀⣼⠀⢈⠀⠄⠈⡇⠀⠀⢱⠘⣷⠀⠈⡼⢻⡀⠰⠿⣟⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠗⡄⠀⣸⠁⣼⡠⢲⠃⠀⢠⡇⠈⢀⠂⠀⠈⣇⢰⠀⠈⢆⠐⢣⢰⠁⣸⡷⣄⣀⣈⠾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⢀⠟⠁⣇⠸⠇⡀⢏⡇⢰⡏⡇⠀⠀⠀⡀⢠⠟⣌⣄⠀⢸⠆⠌⡇⣇⢸⣿⠈⢿⠤⠇⢇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡟⡧⣤⢖⡇⢸⠀⠰⣸⠠⡞⠒⢳⢈⠓⠙⠠⡸⠀⠹⡿⡌⠉⡇⢂⠹⢸⣹⡿⣿⠾⣹⢰⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣧⡶⠇⠈⣷⢸⠀⢱⢋⣞⣀⡀⠈⢫⡀⠀⢣⡀⠀⣠⣿⣷⣦⣆⢸⣻⣎⢹⡇⠙⢽⣔⠂⠘⠆⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⡺⠁⠀⣼⠷⣿⡴⠈⢰⣿⢿⣿⣿⣧⠀⠱⠀⠀⠀⠀⣿⣿⣿⠏⢻⣾⠿⢷⣾⢁⣀⣀⠉⡿⣘⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⠔⠀⠀⡘⠋⠀⢺⡇⠹⣾⣏⠀⢿⠛⠿⠀⠀⠀⠀⠀⠀⠑⠠⠚⠀⣼⠃⠀⢨⢻⣸⣉⣻⠀⠃⢈⣦⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠐⢏⢠⢴⢹⠳⣤⣠⣾⢷⠀⠸⣿⡄⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⢋⣤⡴⡏⣟⣈⡜⠁⠐⠾⠛⡬⠂⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⢹⢸⠀⣿⣽⣟⢺⡄⡂⣿⡟⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠔⣿⠋⡷⢀⡟⠤⡟⣄⣠⠞⣦⡰⡄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢠⠿⠀⢸⡟⣼⠂⢸⣇⢡⠸⡿⠇⠁⠠⢀⡀⠀⠀⠀⣀⠤⡶⠁⢈⣿⠟⢅⢸⠃⣶⠭⣈⣷⠈⣇⠈⠃⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⡀⢰⢮⠀⣿⠙⣾⠀⡞⣼⢌⢷⡱⢄⡀⠀⠠⠘⡌⠉⠁⢀⠔⣓⣀⠜⠃⠀⢀⡝⢠⡏⣷⡂⢼⣶⡘⢄⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢁⡿⠉⣼⠃⣸⢏⡼⠁⣿⡆⠙⠊⠳⠤⠄⠀⡰⢣⡤⣂⡥⠒⠙⡄⠀⠀⠀⡾⠸⣼⡇⢡⢻⡐⣯⣹⡪⢦⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⡜⠀⢸⠃⠈⡎⢋⡄⣼⣧⢹⠀⠀⠀⢀⠠⠊⠀⠀⢠⠿⡄⠀⠀⠈⠐⠄⣀⢧⠸⣟⣧⠀⢧⢱⠘⢧⣟⢄⠳⡄⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣸⡇⢰⠇⠀⡈⠀⡿⠀⣾⡷⠾⠰⠶⡎⢀⠀⠀⠀⣀⣿⣀⣾⠀⠀⠈⠀⠀⣀⡹⠏⠉⠉⢇⠀⠹⣷⠀⠷⡀⢇⢸⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢰⣇⠗⠁⠀⠀⠀⣼⣧⡾⡡⠀⠀⠀⠑⢌⠒⢴⣲⠀⢠⣾⠛⣻⣄⡀⢠⡔⠝⠁⠀⠀⠀⠀⠀⢡⠀⠙⠷⣀⠑⢤⣛⡇⠀⠀⠀⠀
+⠀⠀⠀⠀⡸⠋⢀⡾⠀⠀⡰⣟⠡⡇⠀⠀⡀⠀⠀⠀⠈⠀⠑⠓⠛⡏⢀⠁⣇⠱⠋⠀⠀⠀⠀⠀⢀⠀⠀⠘⡷⡢⢀⠉⠓⢄⡉⢆⡀⠀⠀⠀
+⠀⠀⢀⡼⢁⡴⠋⠀⢀⡞⠁⡏⠐⡇⠀⠀⠈⢤⠀⠀⠀⠀⠀⠀⢠⡇⠀⠀⢸⠀⠀⠀⠀⠀⠀⢀⠃⠀⠀⠀⡇⣎⠢⢌⠂⢄⡈⠳⣵⠄⠀⠀
+⠀⠀⡸⣠⢋⠔⢀⡴⢻⠁⠀⡇⠀⣱⣀⠀⠀⣸⣀⣋⣑⣴⣉⢢⣄⠬⡤⡀⣤⣒⡦⣎⣉⢇⣀⣜⠀⠀⠀⠰⠁⠸⡀⢠⠓⢄⠈⢢⡸⣡⠀⠀
+⠀⠀⣧⢣⢋⡐⠉⣇⠇⠀⠀⠀⢿⣿⣿⣿⢶⡧⠖⠉⠀⠈⠈⢙⣙⡞⢳⡟⠉⠁⠀⠀⠉⠉⢦⡺⢶⣾⣿⣇⣰⠄⢣⠀⠓⠂⠵⡈⢯⡿⠀⠀
+⠀⠀⣿⢣⢪⠀⠀⡧⠀⠄⢠⠀⠀⠙⡟⠉⢙⠈⠀⠀⠀⠀⠀⠀⣾⡳⡷⡿⠀⠀⠀⠀⠀⡆⠈⢹⠁⠉⢻⠋⠁⠀⠀⡄⠀⠀⡠⠇⢼⠃⠀⠀
+⠀⠀⣯⢾⠀⠆⢠⢃⠜⢀⠃⠀⠀⡜⠀⠀⠈⡀⠀⢣⠀⠘⠀⠀⡤⡿⡷⠃⠁⠀⠈⠀⠀⠣⠀⡌⠀⠀⠈⣆⠁⡀⠀⠚⣖⠊⠀⡇⡺⠀⠀⠀
+⠀⢸⢾⡘⡆⢐⡮⠃⢀⠂⠀⠰⠣⣀⠀⠀⠀⢡⠀⠈⣦⣾⣿⣶⡐⣗⢢⠆⣠⣴⣿⣷⣄⠀⢴⡀⠀⠀⠀⢰⠑⠌⠢⡀⠈⠳⡊⡝⠁⠀⠀⠀
+⠀⠸⡇⠤⡻⠊⢀⠔⢁⠀⢀⡗⠀⡆⠉⡶⣌⠉⣦⣾⣿⣿⣿⣿⣿⣷⣴⣿⣿⣿⣿⣿⣿⣿⡞⠉⢱⣾⡏⠁⢂⠀⠀⠈⠳⡀⠈⠐⢀⠀⠀⠀
+⠀⠀⡫⢊⠠⠒⠁⠠⠁⢀⡞⠀⣸⠇⠀⡿⢸⠀⠘⣿⣿⣿⣿⣿⠿⢿⣿⡿⠿⣿⣿⣿⣿⣿⠀⠀⡟⠸⣷⡄⠀⠀⠀⠁⠀⠨⠢⡀⢈⠢⠀⠀
+⢀⡴⢳⠁⠀⢠⡓⠁⡠⠊⡠⢁⣏⠀⠀⡷⠘⠀⠀⢿⣿⣿⣿⣿⠀⢰⣞⠀⢠⣿⣿⣿⣿⡇⠀⠀⡇⠘⡏⠹⡀⠀⠀⠀⠈⢀⠈⠘⣄⠱⡃⠀
+⠊⢰⠋⠀⢠⠋⠀⠀⢀⡔⢁⠊⠀⢢⠀⡇⠀⡄⠀⣸⣿⣿⣿⣿⣧⣾⣿⣶⣿⣿⣿⣿⣿⣷⡀⠀⠇⢀⢧⠀⠑⠄⠀⠀⠀⠀⠠⡀⠈⢾⡇⠀
+⠀⠃⢀⠔⠁⠀⡀⠔⢈⠤⠁⡆⠀⠀⣾⠁⠀⡇⣰⣿⣿⣿⣿⣿⠻⢿⣿⣿⠟⣿⣿⣿⣿⣿⣷⣸⠀⠀⢸⠔⠊⠈⠐⠦⠀⠀⠀⠈⡂⠈⢇⠀
+⠀⡔⠁⠠⠐⢈⠤⡆⠉⠱⡀⡵⠀⠀⡏⠀⣠⣿⣿⣿⣿⣿⣿⣿⡄⢈⣯⡁⢠⣿⣿⣿⣿⣿⣿⣿⣄⠀⠈⣇⡠⠴⠀⠆⠉⠐⡄⡀⠀⠂⡀⡄
+⠀⠀⢠⠐⠋⠀⠀⠘⡀⠀⠐⡇⠀⢸⣥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣷⣾⣿⣷⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣸⣄⠃⠀⡠⠐⠁⠀⠈⠁⠀⠀⠐
+⠀⢰⠁⠀⡃⠀⠀⠀⠱⡀⠀⢆⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢆⠀⢠⠀⠁⠄⣀⣈⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣮⡇⡀⠀⠀⠀⠀⠀⠀⠀
+-->
+
+<!-- ‧̍̊·̊‧̥°̩̥˚̩̩̥͙°̩̥‧̥·̊‧̍̊ ♡ °̩̥˚̩̩̥͙°̩̥ ·͙*̩̩͙˚̩̥̩̥*̩̩̥͙·̩̩̥͙*̩̩̥͙˚̩̥̩̥*̩̩͙‧͙ °̩̥˚̩̩̥͙°̩̥ ♡ ‧̍̊·̊‧̥°̩̥˚̩̩̥͙°̩̥‧̥·̊‧̍̊ ♡ °̩̥˚̩̩̥͙°̩̥ ·͙*̩̩͙˚̩̥̩̥*̩̩̥͙·̩̩̥͙*̩̩̥͙˚̩̥̩̥*̩̩͙‧͙ -->
+<body>
+  <!-- JS -->
+  <script src="/js/openModal.js" defer></script>
+  <script src="/js/toggleMenu.js" defer></script>
+  <script src="/js/randomQuotes.js" defer></script>
+
+  <!-- MODAL WINDOW FOR SCREENSHOTS -->
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+  <div class="modal" id="screenshotModal">
+    <span class="modal__close" id="closeModal" aria-label="Закрыть изображение">&times;</span>
+    <img class="modal__image" id="modalImage" alt="Увеличенный скриншот">
+  </div>
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+
+  <!-- HEADER -->
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+  <header class="site-header">
+    <a href="/" style="text-decoration: none;"><div class="logo-glitch">Niko Bot</div></a>
+    <nav class="site-header__nav">
+      <a href="/" class="site-header__nav-link">Гайды</a>
+      <a href="https://t.me/niko_bot_news" class="site-header__nav-link">Новости</a>
+      <a href="https://t.me/niko_rp_bot?start=donat" class="site-header__nav-link">Донат</a>
+    </nav>
+
+    <!-- BURGER MENU -->
+    <div class="burger-menu" aria-label="Открыть меню">
+      <div class="burger-menu__line"></div>
+      <div class="burger-menu__line"></div>
+      <div class="burger-menu__line"></div>
+    </div>
+  </header>
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+
+  <!-- BACKGROUND MOBILE MENU -->
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+  <div class="burger-overlay"></div>
+  <div class="burger-menu__panel">
+    <div class="burger-menu__close" aria-label="Закрыть меню">&times;</div>
+    <p class="burger-menu__title">Меню</p>
+
+    <nav class="burger-menu__nav">
+      <a href="/index.html" class="burger-menu__link">Гайды</a>
+      <a href="https://t.me/niko_bot_news" class="burger-menu__link">Новости</a>
+      <a href="https://t.me/niko_rp_bot?start=donat" class="burger-menu__link">Донат</a>
+    </nav>
+  </div>
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+
+  <!-- CONTENT DESCRIPTION -->
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+  <div class="content-container">
+    <h1>Гайд по командам</h1>
+
+    <nav class="toc">
+      <p><span>·· </span><a href="#profile">👤 Профиль</a></p>
+      <p><span>·· </span><a href="#economy">💰 Экономика</a></p>
+      <p><span>·· </span><a href="#pets">🐈 Питомцы</a></p>
+      <p><span>·· </span><a href="#marriage">💒 Браки</a></p>
+      <p><span>·· </span><a href="#friends">🎭 Друзья</a></p>
+      <p><span>·· </span><a href="#like">❤️‍🔥 Лайки</a></p>
+      <p><span>·· </span><a href="#kus">😈 Кусь</a></p>
+      <p><span>·· </span><a href="#rp">📜 РП команды</a></p>
+      <p><span>·· </span><a href="#games">🎮 Мини-игры</a></p>
+      <p><span>·· </span><a href="#gathering">🎣 Добыча</a></p>
+      <p><span>·· </span><a href="#farm">🌾 Ферма</a></p>
+      <p><span>·· </span><a href="#shop">🛒 Магазин и инвентарь</a></p>
+      <p><span>·· </span><a href="#tops">🏆 Топы</a></p>
+      <p><span>·· </span><a href="#privacy">🥸 Приватность</a></p>
+      <p><span>·· </span><a href="#vip">👑 VIP Статус</a></p>
+      <p><span>·· </span><a href="#otherCommands">🧾 Другие команды</a></p>
+      <p><span>·· </span><a href="#donat">💵 Донат</a></p>
+    </nav>
+
+    <div class="section-spacer"></div>
+  </div>
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+
+  <div class="content-container">
+    <div class="warning-box">
+      <h2 class="section-title">Внимание!</h2>
+      <p>👉 <a href="https://t.me/niko_rp_bot">Официальная ссылка на Нико</a></p>
+      <p>👉 <a href="https://t.me/niko_bot_news">Официальная ссылка на новостной канал</a></p>
+      <p>👉 <a href="https://t.me/niko_room">Официальная ссылка на группу</a></p>
+
+      <img src="/images/pepe/pepe-clown-2.gif" alt="Пепе клоун" loading="lazy">
+
+      <p>Все остальные это подделки и дешевки с алиэкспрес!</p>
+    </div>
+
+    <div class="section-spacer"></div>
+    <div class="warning-box">
+      <p>🔔 Если Вы не хотите, что бы бот вас отмечал (тегал со звуком), отключите уведомления.</p>
+
+      <details class="collapsible--warning">
+        <summary class="collapsible__summary">КАК ЭТО СДЕЛАТЬ?</summary>
+        <img src="images/disableSound.jpg" alt="Инструкция по отключению звука" class="screenshot" loading="lazy">
+      </details>
+    </div>
+
+    <div class="section-spacer"></div>
+    <div class="warning-box">
+      <p><b>🐞 Я нашёл баг!</b></p>
+
+      <p>Напиши о баге в нашем чате <a href="https://t.me/niko_room">@niko_room</a> — разберёмся!</p>
+    </div>
+
+    <div class="section-spacer"></div>
+    <div class="warning-box">
+      <p><b>🌌 Мне тяжело читать гайд, слишком яркие цвета</b></p>
+
+      <p>Внизу страницы есть выбор темы "Choose Theme", выберите "paper" или "monochrome".</p>
+    </div>
+
+    <div class="section-spacer"></div>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <main class="content-container">
+    <section id="profile">
+      <div class="section-header">👤 Профиль</div>
+      <div class="section-content">
+        <p>Твой профиль — команда <code class="command-code">профиль</code>. Там уровень, раса, баланс, друзья, лайки, кусь и брак.</p>
+        <br>
+        <p><b>Настройка профиля</b></p>
+        <p>● Раса и пол — кнопками прямо в профиле.</p>
+        <p>● Статус — <code class="command-code">статус Я люблю котиков</code></p>
+        <p>● Дата рождения — <code class="command-code">др 25.05.2005</code></p>
+        <br>
+        <p>Личные разделы одной командой: <code class="command-code">мой брак</code>, <code class="command-code">мои друзья</code>, <code class="command-code">мои питомцы</code>.</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="economy">
+      <div class="section-header">💰 Экономика</div>
+      <div class="section-content">
+        <p>Баланс, резерв и кристаллы — <code class="command-code">баланс</code> (или <code class="command-code">б</code>).</p>
+        <br>
+        <p><b>Перевод другому игроку</b> — ответь на его сообщение и напиши <code class="command-code">дать 10к</code></p>
+        <br>
+        <p><b>Ежедневный бонус</b> — <code class="command-code">бонус</code> (раз в 24 часа, у VIP больше).</p>
+        <br>
+        <p><b>Продать кристаллы за деньги</b> — <code class="command-code">продать кристаллы 5</code> (1 💎 = 13.333.333р).</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="pets">
+      <div class="section-header">🐈 Питомцы</div>
+      <div class="section-content">
+        <p>Заведи питомца и заботься о нём: корми, купай, лечи и играй.</p>
+        <p>Без ухода питомец постепенно грустит, голодает и пачкается, а ночью спит 😴</p>
+        <br>
+        <p><b>Команды</b></p>
+        <p>● Зоомагазин (питомцы и зоотовары) — <code class="command-code">зоомагазин</code></p>
+        <p>● Твои питомцы — <code class="command-code">питомцы</code> (или <code class="command-code">мои питомцы</code>)</p>
+        <p>● Уход (покормить / лечить / искупать / играть) — кнопками в карточке питомца</p>
+        <p>● Сменить кличку — <code class="command-code">кличка 42 Барсик</code> (ID виден в карточке)</p>
+        <br>
+        <p class="warning-text">⚠️ Для ухода нужны зоотовары: корм, шампунь, лекарства — покупаются в зоомагазине под вид питомца.</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="marriage">
+      <div class="section-header">💒 Браки</div>
+      <div class="section-content">
+        <p>Чтобы сделать предложение — ответь на сообщение человека командой <code class="command-code">вбрак</code>. Он примет или откажет кнопкой.</p>
+        <br>
+        <p>● Твой брак (партнёр, сколько дней вместе) — <code class="command-code">брак</code></p>
+        <p>● Развестись — <code class="command-code">развод</code> (или <code class="command-code">развестись</code>)</p>
+        <p>● Топ браков чата — <code class="command-code">браки</code></p>
+        <br>
+        <p>Брак глобальный и не привязан к чату. В топе браков чата видны пары, где <b>оба</b> супруга состоят в этом чате.</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="friends">
+      <div class="section-header">🎭 Друзья</div>
+      <div class="section-content">
+        <p>Добавить в друзья — ответь на сообщение командой <code class="command-code">вдрузья</code>.</p>
+        <br>
+        <p>Список друзей (с карточками и удалением) — <code class="command-code">друзья</code> (или <code class="command-code">мои друзья</code>).</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="like">
+      <div class="section-header">❤️‍🔥 Лайки</div>
+      <div class="section-content">
+        <p>Лайк уникален: одному человеку можно поставить только один лайк.</p>
+        <br>
+        <p>● Поставить лайк — ответь на сообщение командой <code class="command-code">лайк</code></p>
+        <p>● Кто тебя лайкал — <code class="command-code">лайки</code> (или ответом на сообщение — чужие лайки)</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="kus">
+      <div class="section-header">😈 Кусь</div>
+      <div class="section-content">
+        <p>Укусить человека — ответь на его сообщение командой <code class="command-code">кусь</code>.</p>
+        <br>
+        <p>Укусы бывают разной редкости (обычный, редкий, легендарный 💥) — чем реже, тем больше засчитывается в счётчик «Кусей» в твоём профиле.</p>
+        <p>Лучших кусак смотри в <code class="command-code">топ кусак</code>.</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="rp">
+      <div class="section-header">📜 РП команды</div>
+      <div class="section-content">
+        <p>РП-команды — это действия над собеседником ответом на его сообщение: <code class="command-code">обнять</code>, <code class="command-code">поцеловать</code>, <code class="command-code">погладить</code>, <code class="command-code">ударить</code> и многие другие.</p>
+        <br>
+        <p>Род глагола подставляется по твоему полу. Полный список — в справочнике <code class="command-code">команды</code>.</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="games">
+      <div class="section-header">🎮 Мини-игры</div>
+      <div class="section-content">
+        <p><b>💣 Мины</b> — <code class="command-code">мины 3к</code>. Открывай клетки и копи множитель, успей забрать до взрыва.</p>
+        <br>
+        <p><b>🎰 Спин (слот-машина)</b> — <code class="command-code">спин 1к</code> (или <code class="command-code">казино</code>). Лови джекпот!</p>
+        <p>У каждого чата своя касса: каждый проигрыш в спин её пополняет, а джекпот забирает кассу. Посмотреть кассу — <code class="command-code">касса</code>.</p>
+        <br>
+        <p><b>🧩 Пазл</b> — <code class="command-code">пазл</code>. Запомни и повтори последовательность (у VIP награда ×2).</p>
+        <br>
+        <p><b>🎲 PVP-игра</b> — ответь на сообщение игрока командой <code class="command-code">играть 5к</code>. Победитель забирает ставки.</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="gathering">
+      <div class="section-header">🎣 Добыча</div>
+      <div class="section-content">
+        <p>Добывай ресурсы и продавай их. Для каждой активности нужен инструмент из магазина.</p>
+        <br>
+        <p><b>Активности</b></p>
+        <p>● Рыбалка — <code class="command-code">рыбалка</code> (нужна удочка; прикормка ускоряет)</p>
+        <p>● Рудник — <code class="command-code">рудник</code> (нужна кирка)</p>
+        <p>● Лесопилка — <code class="command-code">лесопилка</code> (нужна пила/топор)</p>
+        <br>
+        <p><b>Дальше</b></p>
+        <p>● Забрать готовое — <code class="command-code">собрать</code></p>
+        <p>● Уровни добычи — <code class="command-code">навыки</code></p>
+        <p>● Переработать сырьё — <code class="command-code">крафт</code></p>
+        <p>● Контракты дня — <code class="command-code">квесты</code> (или <code class="command-code">задания</code>)</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="farm">
+      <div class="section-header">🌾 Ферма</div>
+      <div class="section-content">
+        <p>Своя ферма: грядки с урожаем и загон с животными. Открыть — <code class="command-code">ферма</code>.</p>
+        <br>
+        <p><b>🌱 Грядки</b></p>
+        <p>● Купи семена прямо на ферме (кнопка <code class="command-code">🛒 Семена</code>) — в обычном магазине их нет.</p>
+        <p>● Посади семена в свободную грядку, дождись, пока культура созреет, и забери урожай кнопкой <code class="command-code">✅ Собрать</code>.</p>
+        <p>● Культуры: 🥕 морковь, 🌾 пшеница, 🌽 кукуруза (с ур. 2), 🎃 тыква (с ур. 3).</p>
+        <br>
+        <p><b>🐄 Загон</b></p>
+        <p>● Купи животное — оно само производит продукт по таймеру, забирай его кнопкой <code class="command-code">✅ Собрать</code>.</p>
+        <p>● Животные: 🐔 курица (яйца), 🐑 овца (шерсть, ур. 2), 🐝 пчёлы (мёд, ур. 3), 🐄 корова (молоко, ур. 3).</p>
+        <br>
+        <p><b>📈 Уровень фермы</b></p>
+        <p>Каждый сбор качает уровень фермы (он виден в шапке меню <code class="command-code">ферма</code>). Чем выше уровень — тем больше грядок (с 4 до 8) и тем больше культур и животных открыто.</p>
+        <br>
+        <p>Урожай и продукты — обычные ресурсы: продавай их через <code class="command-code">продать</code>, а урожаем с грядок ещё и закрывай дневные контракты <code class="command-code">квесты</code>. А ещё из урожая и продуктов можно <b>готовить</b> в <code class="command-code">крафт</code>: мука, хлеб, овощное рагу, тыквенный пирог и выпечка — стоят дороже сырья.</p>
+        <br>
+        <p class="warning-text">⚠️ Урожай и продукты занимают место в рюкзаке (как добыча). Если рюкзак полон — сначала продай, потом собирай.</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="shop">
+      <div class="section-header">🛒 Магазин и инвентарь</div>
+      <div class="section-content">
+        <p>● Магазин (инструменты и расходники для добычи) — <code class="command-code">магазин</code></p>
+        <p>● Инвентарь (ресурсы и инструменты) — <code class="command-code">инвентарь</code> (или <code class="command-code">инв</code>)</p>
+        <br>
+        <p><b>Продажа ресурсов</b></p>
+        <p>● По виду — <code class="command-code">продать рыбу 10</code></p>
+        <p>● Всё сразу — <code class="command-code">продать всё</code></p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="tops">
+      <div class="section-header">🏆 Топы</div>
+      <div class="section-content">
+        <p>Открыть меню топов — <code class="command-code">топ</code>. Можно сразу: <code class="command-code">топ донатов</code>.</p>
+        <br>
+        <p><b>Глобальные топы</b></p>
+        <div class="union">
+          <p>● <code class="command-code">топ игроков</code></p>
+          <p>● <code class="command-code">топ касс</code></p>
+          <p>● <code class="command-code">топ чатов</code></p>
+          <p>● <code class="command-code">топ донатов</code></p>
+          <p>● <code class="command-code">топ кусак</code></p>
+        </div>
+        <br>
+        <p><b>Топы чата</b> (работают только в группе)</p>
+        <div class="union">
+          <p>● <code class="command-code">топ активных</code></p>
+          <p>● <code class="command-code">браки</code> — топ браков чата</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="privacy">
+      <div class="section-header">🥸 Приватность</div>
+      <div class="section-content">
+        <p>Включи приватность — и ссылка на твой профиль не будет показываться в топах.</p>
+        <p>Команда — <code class="command-code">приватность</code>.</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="vip">
+      <div class="section-header">👑 VIP статус</div>
+      <div class="section-content">
+        <p>VIP повышает лимиты и даёт приятные бонусы:</p>
+        <br>
+        <p>✅ До <b>10</b> питомцев (обычным — 2)</p>
+        <p>✅ Повышенный ежедневный бонус (<b>55.000 – 99.999р</b>)</p>
+        <p>✅ Награда за пазл <b>×2</b></p>
+        <p>✅ Расширенные настройки модерации чата</p>
+        <p>✅ Корона 👑 в профиле</p>
+        <p>✅ Первыми пробуют обновления</p>
+        <br>
+        <p class="text-with-image">* Кстати, VIP стоит недорого ;) — см. <a href="#donat" class="link">Донат</a> *</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="otherCommands">
+      <div class="section-header">🧾 Другие команды</div>
+      <div class="section-content">
+        <p>● Справочник всех команд — <code class="command-code">команды</code></p>
+        <p>● Состав стаффа чата — <code class="command-code">стаф</code></p>
+        <p>● Пинг бота — <code class="command-code">нико</code></p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="donat">
+      <div class="section-header">💵 Донат</div>
+      <div class="section-content">
+        <p>В ЛС с Нико напиши <code class="command-code">/donat</code>. Оплата только звёздами ⭐️.</p>
+        <br>
+        <p><b>Цены</b></p>
+        <p>⭐️ 100 звёзд = 💵 100.000.000р</p>
+        <p>⭐️ 10 звёзд = 💵 10.000.000р</p>
+        <p>⭐️ 70 звёзд = 💎 5 кристаллов</p>
+        <p>⭐️ 15 звёзд = 💎 1 кристалл</p>
+        <p>⭐️ 100 звёзд = 👑 Год VIP-статуса</p>
+        <p>⭐️ 10 звёзд = 👑 Месяц VIP-статуса</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+  </main> <!--End-->
+
+  <div class="footer-spacer"></div>
+
+  <footer class="site-footer">
+    <div class="site-footer__content">
+      <p id="quote"></p>
+      <p>(c) Стетхем</p>
+    </div>
+
+    <div class="site-footer__content">
+      <label for="dropdown">Сменить тему</label>
+      <select id="dropdown"></select>
+    </div>
+  </footer>
+
+  <div class="bg-pattern"></div>
+</body>
+</html>

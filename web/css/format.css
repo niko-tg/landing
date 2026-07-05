@@ -1,0 +1,36 @@
+h2.section-title {
+  margin-bottom: 10px;
+}
+
+h3.section-subtitle {
+  margin-bottom: 10px;
+}
+
+/* Класс для команд */
+.command-code {
+  font-family: "SF Mono", "JetBrains Mono", "Fira Code", Consolas, monospace;
+  font-size: 15px;
+  color: var(--color-accent);
+  background-color: var(--color-code-bg);
+  border: 1px solid var(--color-border-secondary);
+  transition: transform 0.1s ease;
+
+  /*  Без переноса на новую строку*/
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.command-code:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease;
+  cursor: crosshair;
+}
+
+/* Картинка с тегом p */
+.text-with-image {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+

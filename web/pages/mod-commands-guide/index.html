@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <!-- JS -->
+  <script type="module" src="/js/changeTheme.js"></script>
+  <!-- ALL -->
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>niko-bot - Гайд по модераторским командам</title>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<!--
+  > САЙТИК НАПИСАН РУКАМИ
+  > И ОН ПРОСТОЙ КАК ПАЛКА...
+  > НО ВСЁ ЖЕ, ЕСЛИ ВЫ НАШЛИ BUG ИЛИ ОПЕЧАТКУ
+  > МОЙ TG: https://t.me/OxNiko
+
+  > ДЛЯ ВСЕХ ВИДОВ БОТОВ РАССТАВЛЕНЫ ЛОВУШКИ
+  > FUZZING БОТАМ ОСОБЕННО ПРИВЕТ
+  > СТУЧАТЬСЯ НА SSH - СЕБЕ БУДЕТ ДОРОЖЕ
+
+  > ФИНГЕРПРИНТЫ СОБИРАЮ, ДА...
+  > НО С ЦЕЛЬЮ ВЫЯВЛЕНИЯ АНОМАЛИЙ И СОСТАВЛЕНИЯ БЕЛОГО СПИСКА
+
+⠀⠀⠀⠀⢀⠀⡀⢀⠠⢠⠋⠀⠀⡀⢀⢠⡼⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠣⣟⡜⣣⣛⠼⣙⢮⡝⣻⢻⠿⣿⣿⣧⣏⣷⡽⣎⡽⣭⣛
+⠀⠀⠀⠀⠂⠠⠐⠀⣰⠃⠀⠄⠁⡀⢤⠎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢵⡎⡽⣩⠶⣙⠶⣩⣛⠴⣫⢝⡻⣟⡿⣿⣿⣷⣯
+⠀⠀⠀⡈⠄⠁⠠⣱⠃⠀⡈⢀⠐⡤⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢧⡳⢭⣙⡞⣱⢮⡹⢖⣫⢷⡹⣞⡵⣞⡽⣻
+⠀⠀⠠⢀⠐⢈⣼⠁⠀⡐⠀⣤⠎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣣⠯⣜⡳⣎⢷⢫⡞⣧⢟⣼⢳⡝⣾⣱
+⠀⢀⣰⠤⣦⠞⣇⠀⠐⠀⣴⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣧⣛⢼⡱⣏⡞⣧⢻⡜⣯⢞⡽⣺⢵⣫
+⠀⡼⠁⢸⡁⠀⠙⣦⠈⢠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢾⣎⡳⣝⡺⣵⢫⡞⣧⡻⣞⡽⣎⢷
+⠀⢱⡀⠀⠱⣌⡀⠘⣧⡸⡅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⢰⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠉⠷⣭⢳⣎⢷⡹⢶⣹⢎⣷⡹⢯
+⠀⠀⠳⡀⠀⠀⠉⠙⠚⠓⠁⠀⠀⠀⠀⠀⠀⠀⣠⣴⣿⣧⠀⠀⠀⡇⠀⠀⣿⣛⣉⣉⡀⠀⠀⠈⠄⠀⠀⠀⠀⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣎⢷⡹⢧⣛⢮⣳⢽⣫
+⠀⠘⠀⠻⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢿⣿⣻⣿⡀⠀⠀⣧⠀⠀⣿⣿⣿⣿⣿⡀⠀⠀⠘⢄⠀⠀⠀⠀⠀⠀⠄⢸⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⢿⣜⡻⣇⠿⣜⢧⡟⣼
+⠀⠈⡀⠄⠀⠉⢓⡲⠂⠀⠀⠀⠀⠀⠀⠀⠀⡈⠈⠈⠉⠙⢓⡀⠀⢸⣧⡀⢹⣿⣿⣟⣿⣻⣄⠀⠀⠈⠑⠤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢧⠀⢸⣎⠷⣭⢻⡜⣧⣛⢾
+⠀⠁⡀⠠⠈⡴⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠰⣶⠀⡀⠀⠀⢄⡀⠻⣿⣶⠯⠭⠙⠁⣛⡻⠋⢢⡄⠀⠀⠀⠀⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⣼⠀⢰⣏⠿⣜⢧⣛⠶⣭⢻
+⡟⣯⡝⣯⡿⠁⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣷⣤⣁⣀⣈⣠⣿⣿⣷⣾⣷⣶⡄⢀⠄⠀⡀⠀⡀⠀⠀⠀⠀⠀⢠⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⢠⢏⣠⢿⡸⣛⡼⣣⢏⡿⣜⢯
+⣽⢲⡽⣲⡇⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣇⣿⣿⣿⣿⣿⣮⣁⡀⠒⠀⠡⢘⣡⣶⠁⠀⠀⠀⡼⣯⢿⠀⠀⠀⠀⠀⠀⠀⢠⡟⢯⣙⠶⣍⢧⡝⣧⢻⡼⣹⢞
+⢞⢧⡻⡵⣻⣄⢸⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀⣴⣿⣿⠟⠀⠀⠀⠀⠀⠀⢰⢯⣙⢮⡱⢏⢾⡱⣞⡱⣏⢾⡱⣏
+⢨⢷⡹⣵⢣⣟⡳⢯⠧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣷⣭⣭⣛⡿⠿⠿⣋⣿⣿⣿⠿⠿⠋⠀⡀⠀⠀⠐⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠘⣗⡎⢧⡝⢮⢣⠗⣮⢳⣙⣎⢷⡹
+⠸⣎⠷⣭⡳⡎⠁⠠⠀⢳⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⠶⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣼⣣⠞⣭⢣⢟⡲⡝⢮⡜⣮⠽
+⢸⢭⡻⢽⡝⠧⢄⣂⡥⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⣿⡿⠿⠛⠋⣉⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣋⠟⡿⢷⣯⣮⣕⣏⢧⡻⣜⢯
+⢸⢧⣛⢧⣛⡶⣄⣀⠀⠀⠀⠀⢀⣠⢄⠀⡼⡇⠀⠀⠀⠀⠀⠀⠀⠉⠁⢤⣤⣴⢶⣎⡉⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠀⠀⡞⡡⢋⠜⡡⢎⡙⡛⠿⢷⣿⣼⣫
+⡸⢧⣛⢮⡳⣝⢮⡻⣝⡻⢯⠉⠁⠀⠈⠓⠽⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣧⡙⠛⠓⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠀⢀⡜⠱⡐⡩⢘⠤⢃⠬⢱⡉⠖⣬⣿⢏
+⡹⢧⣛⢮⡳⣝⢮⡳⣭⢻⡽⠀⠀⠀⠁⠠⠀⠀⠠⠤⠤⠒⠤⠤⠤⠒⡝⢸⣿⣿⣿⣿⣶⣤⠀⠀⠀⠀⢠⠒⡒⠒⠤⣀⢀⣀⠔⢖⡒⡚⠥⢨⠑⡰⢁⠎⢢⠍⢢⢃⡜⣵⡿⣋⡖
+⣝⢧⣛⢮⡳⣝⢮⡳⣭⢷⣹⠀⠀⠐⠈⠀⣠⠖⠓⠈⠐⠒⠒⠖⠚⢉⡁⠈⠙⠛⠛⠛⠉⠀⢀⡐⢄⠀⠈⠣⠜⣓⠶⢊⢿⣄⠎⡰⢠⠑⡌⢢⠑⢢⠉⡜⡐⣊⠥⣢⣾⡟⡱⡜⡸
+⡞⣧⣛⢮⡳⣝⢮⡳⣝⢮⡳⡴⢦⣦⡴⡜⠁⠀⠀⠀⠀⠀⣿⣾⣿⣿⣿⣷⠄⣤⣤⣤⣴⣾⣿⣷⣤⡙⠣⢉⡍⠡⠘⡄⢢⠙⠷⣶⣥⣮⣐⣡⢊⠄⡓⠤⡑⢤⣾⡿⢋⠴⡑⡎⠵
+⠝⠶⠹⢎⡷⠹⠎⢷⣭⢳⢯⣝⣳⢮⡽⠀⠀⠀⠀⠀⢠⣷⡘⣿⣿⣿⣿⠉⠄⢻⣿⣿⣿⣿⣿⣿⣿⣿⡶⠀⠀⠉⠉⠒⢦⡉⠰⢀⠂⡹⢟⡿⣻⠿⢾⣶⣷⣿⠟⣡⢋⠖⣩⠜⣣
+⠀⠀⠀⠈⣽⡄⠀⢸⣎⡟⡾⣜⠧⠛⡃⠀⠀⠀⠀⢀⣾⣿⣿⣌⢿⣿⣿⣶⣶⣿⣿⣿⣿⣿⡿⠿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠈⢣⡂⢬⢐⡈⢓⠋⡔⢢⠐⡌⢡⠚⠤⡉⠞⡤⡙⢤
+⣶⡄⠀⠀⣷⠃⠀⣼⣮⡝⠁⠀⠀⠀⢱⠀⠀⠀⠀⣼⣿⣿⣿⣿⣾⣿⣿⣿⣿⠛⢩⣭⣥⣶⣶⡞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡏⡄⢢⠉⢢⡜⠀⢣⡜⣤⠃⡜⢢⠉⠒⢡⠚⣤
+⡷⣻⠽⣶⡹⢧⣤⠓⠈⠀⠀⠀⠀⢀⣹⠀⠀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠐⠂⢌⠠⠌⡱⢈⠖⡱⠊⠔⡨⠘⠤⡉⠆⠥
+⡷⣭⣛⡶⡻⠙⠀⠀⠀⠀⢀⡤⢚⠕⠊⠀⢸⣿⣿⣿⣿⣿⣿⡿⢟⣱⣿⣿⣿⣿⣿⣿⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠡⠉⠄⣂⠱⣀⠣⢈⠄⠣⡘⠤⢉⠆⠱⣈⠒
+⣽⢲⠝⠊⠀⠀⠀⢀⡤⠚⢁⠜⠁⠀⠀⠀⠈⢿⣿⣿⣿⠟⣡⣶⣿⣿⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠡⠘⢠⠀⠒⡀⠆⢡⠘⡐⠰⠈⠆⡌⠱⣀⠃
+⠉⠁⠀⠀⢀⠤⠚⠁⠀⢀⠎⠀⠀⠀⠀⠀⠀⠈⢻⣿⢡⣾⣿⣿⣿⣿⣿⣿⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠡⢈⠄⠌⠡⡐⠨⠄⠒⡈⠔⣉⠰⢈⠅⢢⠑
+⠀⣀⠔⠊⠁⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠾⠿⣿⣿⣿⠿⠟⠋⠁⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡸⢀⠁⠆⣈⠰⠁⠄⠃⠌⢂⡁⠒⡠⠘⡄⢊⠤⢃
+⠊⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⠠⢈⠐⠄⢂⠡⠊⠌⡈⠔⡀⢃⠔⠡⡘⣐⢊⡱
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡎⢀⠁⠂⠌⡈⠔⡠⢁⠆⡁⢒⠨⡐⢌⠱⡐⢢⠁⢆
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡀⠂⠌⡐⠠⠐⡈⠄⢃⠰⢈⠢⠑⡌⢢⠑⡌⢢⠉⠆
+-->
+
+<!-- ‧̍̊·̊‧̥°̩̥˚̩̩̥͙°̩̥‧̥·̊‧̍̊ ♡ °̩̥˚̩̩̥͙°̩̥ ·͙*̩̩͙˚̩̥̩̥*̩̩̥͙·̩̩̥͙*̩̩̥͙˚̩̥̩̥*̩̩͙‧͙ °̩̥˚̩̩̥͙°̩̥ ♡ ‧̍̊·̊‧̥°̩̥˚̩̩̥͙°̩̥‧̥·̊‧̍̊ ♡ °̩̥˚̩̩̥͙°̩̥ ·͙*̩̩͙˚̩̥̩̥*̩̩̥͙·̩̩̥͙*̩̩̥͙˚̩̥̩̥*̩̩͙‧͙ -->
+<body>
+  <!-- JS -->
+  <script src="/js/openModal.js" defer></script>
+  <script src="/js/toggleMenu.js" defer></script>
+  <script src="/js/randomQuotes.js" defer></script>
+
+  <!-- MODAL WINDOW FOR SCREENSHOTS -->
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+  <div class="modal" id="screenshotModal">
+    <span class="modal__close" id="closeModal" aria-label="Закрыть изображение">&times;</span>
+    <img class="modal__image" id="modalImage" alt="Увеличенный скриншот">
+  </div>
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+
+  <!-- HEADER -->
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+  <header class="site-header">
+    <a href="/" style="text-decoration: none;"><div class="logo-glitch">Niko Bot</div></a>
+    <nav class="site-header__nav">
+      <a href="/" class="site-header__nav-link">Гайды</a>
+      <a href="https://t.me/niko_bot_news" class="site-header__nav-link">Новости</a>
+      <a href="https://t.me/niko_rp_bot?start=donat" class="site-header__nav-link">Донат</a>
+    </nav>
+
+    <!-- BURGER MENU -->
+    <div class="burger-menu" aria-label="Открыть меню">
+      <div class="burger-menu__line"></div>
+      <div class="burger-menu__line"></div>
+      <div class="burger-menu__line"></div>
+    </div>
+  </header>
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+
+  <!-- BACKGROUND MOBILE MENU -->
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+  <div class="burger-overlay"></div>
+  <div class="burger-menu__panel">
+    <div class="burger-menu__close" aria-label="Закрыть меню">&times;</div>
+    <p class="burger-menu__title">Меню</p>
+
+    <nav class="burger-menu__nav">
+      <a href="/index.html" class="burger-menu__link">Гайды</a>
+      <a href="https://t.me/niko_bot_news" class="burger-menu__link">Новости</a>
+      <a href="https://t.me/niko_rp_bot?start=donat" class="burger-menu__link">Донат</a>
+    </nav>
+  </div>
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+
+  <!-- CONTENT DESCRIPTION-->
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+  <div class="content-container">
+    <h1>Модераторские команды</h1>
+
+    <div class="toc">
+      <h2>Участники чата</h2>
+      <p><span>·· </span><a href="#ban">Бан, /ban</a></p>
+      <p><span>·· </span><a href="#unban">Разбан, /unban</a></p>
+      <p><span>·· </span><a href="#mute">Мут, /mute</a></p>
+      <p><span>·· </span><a href="#unmute">Анмут, /unmute</a></p>
+      <br>
+      <h2>Жалобы</h2>
+      <p><span>·· </span><a href="#report">Репорт, /report</a></p>
+      <br>
+      <h2>Приветствие новичкам</h2>
+      <p><span>·· </span><a href="#mkhello">Задать, /mkhello</a></p>
+      <p><span>·· </span><a href="#rmhello">Удалить, /rmhello</a></p>
+      <p><span>·· </span><a href="#gethello">Показать, /gethello</a></p>
+      <br>
+      <h2>Настройки чата</h2>
+      <p><span>·· </span><a href="#settings">Настройки, /settings</a></p>
+      <p><span>·· </span><a href="#modlog">Журнал модерации, /modlog</a></p>
+      <p><span>·· </span><a href="#reload">Синхронизация стаффа, /reload</a></p>
+    </div>
+
+    <div class="section-spacer"></div>
+  </div>
+  <!-- · · ───── ⋆⋅☆⋅⋆ ───── ꒰ঌ·✦·໒꒱ ───── ⋆⋅☆⋅⋆ ───── · · -->
+
+  <div class="content-container">
+    <div class="warning-box">
+      <p>Чтобы почитать о команде, например о команде <code class="command-code">мут</code> пиши <code class="command-code">команда мут</code></p>
+      <p>Список команд можно просмотреть введя - <code class="command-code">команды</code></p>
+    </div>
+
+    <div class="section-spacer"></div>
+  </div>
+
+  <main class="content-container">
+    <section id="ban">
+      <div class="section-header">Бан</div>
+      <div class="section-content">
+        <b><p>Блокировка пользователя в чате</p></b>
+        <br>
+        <p><code class="command-code">бан</code></p>
+        <p>↳ Банит пользователя, ответом на его сообщение (перманентно)</p>
+        <br>
+        <p><code class="command-code">бан 123456789 12ч</code></p>
+        <p>↳ Банит по ID на 12 часов (без срока — перманентно)</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="unban">
+      <div class="section-header">Разбан</div>
+      <div class="section-content">
+        <b><p>Снять бан с пользователя</p></b>
+        <br>
+        <p><code class="command-code">разбан</code></p>
+        <p>↳ Снимает бан, ответом на сообщение</p>
+        <br>
+        <p><code class="command-code">разбан 123456789</code></p>
+        <p>↳ Снимает бан по ID</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="mute">
+      <div class="section-header">Мут</div>
+      <div class="section-content">
+        <b><p>Запрет писать в чат</p></b>
+        <br>
+        <p><code class="command-code">мут 30м</code> ↳ на 30 минут</p>
+        <p><code class="command-code">мут 4ч</code> ↳ на 4 часа</p>
+        <p><code class="command-code">мут 1д</code> ↳ на сутки</p>
+        <p><code class="command-code">мут</code> ↳ по умолчанию на 5 минут</p>
+        <br>
+        <p>По ID: <code class="command-code">мут 123456789 12ч</code></p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="unmute">
+      <div class="section-header">Анмут</div>
+      <div class="section-content">
+        <b><p>Разрешить участнику писать в чат</p></b>
+        <br>
+        <p><code class="command-code">анмут</code></p>
+        <p>↳ Снимает мут, ответом на сообщение</p>
+        <br>
+        <p><code class="command-code">анмут 123456789</code></p>
+        <p>↳ Снимает мут по ID</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="report">
+      <div class="section-header">Репорт</div>
+      <div class="section-content">
+        <b><p>Пожаловаться модераторам</p></b>
+        <br>
+        <p>Ответь на сообщение нарушителя и напиши <code class="command-code">репорт причина</code> (или <code class="command-code">жалоба</code>).</p>
+        <p>Жалоба уйдёт в модераторский чат / админам.</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="mkhello">
+      <div class="section-header">Задать приветствие</div>
+      <div class="section-content">
+        <b><p>Приветствие новых участников чата</p></b>
+        <br>
+        <p>Ответь командой <code class="command-code">/mkhello</code> на сообщение, которое должно стать приветствием.</p>
+        <p>В тексте можно использовать <code class="command-code">${user}</code> (упоминание новичка) и <code class="command-code">${chat}</code> (название чата).</p>
+        <br>
+        <p class="warning-text">⚠️ Приветствие отправляется, только если оно включено в настройках чата (<code class="command-code">/settings</code>).</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="rmhello">
+      <div class="section-header">Удалить приветствие</div>
+      <div class="section-content">
+        <p>Удалить приветственное сообщение — <code class="command-code">/rmhello</code></p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="gethello">
+      <div class="section-header">Показать приветствие</div>
+      <div class="section-content">
+        <p>Показать текущее приветствие — <code class="command-code">/gethello</code></p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="settings">
+      <div class="section-header">Настройки чата</div>
+      <div class="section-content">
+        <b><p>Интерактивные настройки чата (кнопками)</p></b>
+        <br>
+        <p>Открыть — <code class="command-code">/settings</code></p>
+        <br>
+        <p>Можно включить/выключить: модераторские команды, антифлуд, капчу, приветствие новичкам.</p>
+        <p class="warning-text">⚠️ Часть настроек (удаление ссылок и пересылок, бан от имени канала) доступна только в чатах с VIP-владельцем.</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="modlog">
+      <div class="section-header">Журнал модерации</div>
+      <div class="section-content">
+        <p>Журнал действий модерации (баны, муты и пр.) — <code class="command-code">/modlog</code></p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+    <section id="reload">
+      <div class="section-header">Синхронизация стаффа</div>
+      <div class="section-content">
+        <p>Пересинхронизировать состав администраторов чата из Telegram — <code class="command-code">/reload</code></p>
+        <p>Полезно, если недавно поменяли админов и бот ещё не видит изменения.</p>
+      </div>
+    </section>
+
+    <div class="section-spacer"></div>
+  </main> <!--End-->
+
+  <!-- Футер -->
+  <div class="footer-spacer"></div>
+
+  <footer class="site-footer">
+    <div class="site-footer__content">
+      <p id="quote"></p>
+      <p>(c) Стетхем</p>
+    </div>
+
+    <div class="site-footer__content">
+      <label for="dropdown">Сменить тему</label>
+      <select id="dropdown"></select>
+    </div>
+  </footer>
+
+  <div class="bg-pattern"></div>
+</body>
+</html>
