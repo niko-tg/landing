@@ -1,28 +1,17 @@
 import { startShake, animateRainbow } from './disco.js';
 
 const themes = [
-  { text: 'Light', value: 'light.css' },
-  { text: 'Dark', value: 'dark.css' },
-  { text: 'Biotech', value: 'biotech.css' },
-  { text: 'Cyberpunk', value: 'cyberpunk.css' },
   { text: 'Dark blue', value: 'dark-blue.css' },
-  { text: 'Dark pink', value: 'dark-pink.css' },
-  { text: 'Desert', value: 'desert.css' },
-  { text: 'Emerald gold', value: 'emerald-gold.css' },
-  { text: 'Green dark', value: 'green-dark.css' },
-  { text: 'Grunge', value: 'grunge.css' },
-  { text: 'Hi-tech', value: 'hi-tech.css' },
-  { text: 'Monochrome', value: 'monochrome.css' },
-  { text: 'paper', value: 'paper.css' },
-  { text: 'Moon', value: 'moon.css' },
   { text: 'Neon', value: 'neon.css' },
-  { text: 'Red', value: 'red.css' },
-  { text: 'Retro', value: 'retro.css' },
-  { text: 'Space', value: 'space.css' },
+  { text: 'Cyberpunk', value: 'cyberpunk.css' },
+  { text: 'Moon', value: 'moon.css' },
+  { text: 'Light', value: 'light.css' },
   { text: 'DISCO (don\'t choose)', value: 'light.css', type: 'disco' },
 ];
 
-const startdisco = (themeLink) => {
+const defaultTheme = 'dark-blue.css';
+
+const startdisco = () => {
   try {
     // Создаём аудио
     const audio = new Audio('resources/audio/loop/chipi-chipi-chapa-chapa.mp3');
@@ -78,11 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
     dropdown.appendChild(option);
   });
 
-  // Если тема не задана сохраняем основную
+  // Если тема не задана или была удалена — ставим основную
   let themInStorage = localStorage.getItem('theme');
 
-  if (themInStorage === null) {
-    themInStorage = 'moon.css';
+  if (!themes.some(theme => theme.value === themInStorage)) {
+    themInStorage = defaultTheme;
   }
 
   // Применяем полученную тему
@@ -102,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (type === 'disco') {
       console.log('Started Disco');
-      startdisco(themeLink);
+      startdisco();
     }
   });
 })

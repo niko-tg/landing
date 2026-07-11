@@ -6,16 +6,13 @@ body {
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 
-  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+  font-family: var(--font-main);
   font-size: 16px;
   color: var(--color-text-primary);
 
   min-height: 100vh;
-
-  background: var(--color-bg-primary);
 }
 
 p {
@@ -27,65 +24,70 @@ p {
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-between;
-  /* Внутренние отступы */
+
   padding: 0px;
-  /* Ширина контейнера */
   width: 95%;
-  max-width: 800px;
+  max-width: 840px;
 }
 
+/* Заголовок страницы */
+.content-container h1 {
+  margin: 30px 0 20px;
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.content-container h1::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 14px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--color-btn-primary), var(--color-accent));
+}
+
+/* Секция гайда: шапка и контент читаются как одна стеклянная карточка */
 .section-header {
   display: flex;
-  /* Центрирует элементы по вертикали */
   align-items: center;
-  /* Добавляет небольшой отступ между картинкой и текстом */
   gap: 10px;
 
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 
-  padding: 20px;
+  padding: 20px 24px 16px;
   text-align: left;
 
-  background: var(--color-heading-bg);
+  /* Тонкая градиентная черта под заголовком + фон карточки */
+  background:
+    linear-gradient(90deg, var(--color-btn-primary), transparent 65%) no-repeat left bottom / 45% 2px,
+    var(--color-bg-container);
 
-  border-top-color: var(--color-border-primary);
-  border-right-width: 2px;
-  border-right-style: solid;
-  border-right-color: var(--color-border-primary);
-  border-top-width: 2px;
-  border-top-style: solid;
-  border-top-color: var(--color-border-primary);
-  border-left-width: 2px;
-  border-left-style: solid;
-  border-left-color: var(--color-border-primary);
+  border: 1px solid var(--color-border-alt);
+  border-bottom: none;
 
-  border-top-left-radius: var(--radius);
-  border-top-right-radius: var(--radius);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
 }
 
 .section-content {
   font-size: 16px;
+  line-height: 1.65;
 
-  padding-inline: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-inline: 24px;
+  padding-top: 8px;
+  padding-bottom: 20px;
 
-  background: var(--color-bg-container-alt);
+  background: var(--color-bg-container);
 
-  border-top-color: var(--color-border-primary);
-  border-right-width: 2px;
-  border-right-style: solid;
-  border-right-color: var(--color-border-primary);
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  border-bottom-color: var(--color-border-primary);
-  border-left-width: 2px;
-  border-left-style: solid;
-  border-left-color: var(--color-border-primary);
+  border: 1px solid var(--color-border-alt);
+  border-top: none;
 
-  border-bottom-left-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
 }
 
@@ -110,24 +112,25 @@ p {
 
 .section-content .warning-text {
   background-color: var(--color-bg-warning);
-  padding: 10px;
+  padding: 12px 14px;
   font-weight: bold;
+  border-left: 3px solid var(--color-warning);
   border-radius: var(--radius-sm);
 }
 
 .content-container .section-spacer {
-  padding: 10px;
+  padding: 12px;
 }
 
 /* Класс контейнера для предупреждений */
 .content-container .warning-box {
   padding-inline: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 
   border-radius: var(--radius);
-  border: 2px solid var(--color-border-info);
-  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border-info);
+  border-left: 3px solid var(--color-border-info);
 
   background: var(--color-bg-info);
 }
@@ -135,7 +138,7 @@ p {
 .content-container .warning-box a {
   color: var(--color-text-primary);
 
-  font-size: 18px;
+  font-size: 17px;
   text-decoration: none;
   transition: color 0.3s ease;
   font-weight: bold;
@@ -145,34 +148,69 @@ p {
   color: var(--color-link-warning);
 }
 
-/* Класс контейнера для содержания */
+/* Оглавление: сетка чипов-якорей */
 .content-container .toc {
-  background: var(--color-bg-content);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 
-  padding-inline: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: var(--radius);
+  padding: 18px;
 
-  border: 2px solid var(--color-border-alt);
+  background: var(--color-bg-container);
+  border: 1px solid var(--color-border-alt);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
 }
 
-.content-container .toc a {
-  color: var(--color-link-secondary);
+.content-container .toc p {
+  margin: 0;
+}
 
+/* Заголовки групп внутри оглавления — метки на всю ширину */
+.content-container .toc h2 {
+  flex-basis: 100%;
+  margin: 12px 0 2px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.content-container .toc h2:first-child {
+  margin-top: 0;
+}
+
+.content-container .toc br {
+  display: none;
+}
+
+/* Декоративные "··" из старого списка в чипах не нужны */
+.content-container .toc span {
+  display: none;
+}
+
+.content-container .toc a {
   display: inline-block;
 
-  font-size: 18px;
-  font-weight: bold;
+  padding: 8px 14px;
+  border-radius: 999px;
 
+  background: var(--color-bg-container-alt);
+  border: 1px solid var(--color-border-secondary);
+
+  color: var(--color-text-primary);
+  font-size: 15px;
+  font-weight: 600;
   text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
+
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
 
 .content-container .toc a:hover {
-  color: var(--color-link-hover);
-  transform: translateX(5px);
+  border-color: var(--color-link-primary);
+  background: color-mix(in srgb, var(--color-link-primary) 12%, transparent);
+  transform: translateY(-2px);
 }
 
 .footer-spacer {
@@ -183,4 +221,3 @@ p {
 
   flex: 1;
 }
-

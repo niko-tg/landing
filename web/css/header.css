@@ -1,146 +1,123 @@
+/* Липкая стеклянная шапка (общая для всех страниц) */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
+  gap: 8px;
 
-  width: 95%;
-  margin-top: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px clamp(16px, 4vw, 40px);
 
-  background: var(--color-bg-container);
-  border: 2px solid var(--color-border-primary);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-soft);
+  background: var(--color-bg-primary);
+  background: color-mix(in srgb, var(--color-bg-primary) 72%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border-secondary);
 }
 
-.site-header__nav-link {
-  color: var(--color-text-primary);
+.site-header__brand {
   text-decoration: none;
-  padding: 20px 30px;
-  font-size: 24px;
-
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.site-header__nav-link:hover {
-  color: var(--color-link-hover);
-  transform: translateY(-3px);
-}
-
-.site-header__nav-link--active {
-  border-bottom: 5px solid var(--color-accent);
+  color: inherit;
 }
 
 .site-header__nav {
   display: flex;
-  justify-content: right;
-  padding-right: 20px;
-  gap: 10px;
-  flex-grow: 1;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
 }
 
-/* Базовый стиль для текста с эффектом глитча */
+.site-header__nav-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.site-header__nav-link:hover {
+  color: var(--color-text-primary);
+  background: color-mix(in srgb, var(--color-link-primary) 14%, transparent);
+}
+
+.site-header__nav-link--active {
+  color: var(--color-link-primary);
+}
+
+/* Логотип: неоновый градиент + редкий глитч-проблеск */
 .logo-glitch {
-  font-family: Arial, sans-serif;
-  font-size: 44px;
-  font-weight: bold;
-
-  padding: 12px 45px;
-
   position: relative;
-  font-size: 44px;
-  font-weight: bold;
-  color: white;
-  animation: glitchText 3s infinite;
+  font-family: var(--font-main, Arial, sans-serif);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+
+  color: var(--color-text-primary);
+  background: linear-gradient(95deg, var(--color-text-primary) 20%, var(--color-btn-primary) 60%, var(--color-link-primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px var(--color-btn-primary-shadow));
+  animation: glitch-jitter 7s infinite;
 }
 
-/* Псевдоэлементы для создания эффекта глитча */
 .logo-glitch::before,
 .logo-glitch::after {
-  padding: 12px 45px;
-
   content: "Niko Bot";
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
+  opacity: 0;
+  pointer-events: none;
+  /* Возвращаем видимый цвет тексту призраков поверх градиента родителя */
+  -webkit-text-fill-color: currentColor;
 }
 
-/* Первый слой глитча с розовым смещением */
 .logo-glitch::before {
-  animation: glitchBefore 3s infinite;
-  text-shadow: 2px 0 var(--color-glitch-primary);
-  z-index: -1;
+  color: var(--color-glitch-primary);
+  animation: glitch-ghost-a 7s infinite;
 }
 
-/* Второй слой глитча с голубым смещением */
 .logo-glitch::after {
-  animation: glitchAfter 3s infinite;
-  text-shadow: -2px 0 var(--color-glitch-secondary);
-  z-index: -2;
+  color: var(--color-glitch-secondary);
+  animation: glitch-ghost-b 7s infinite;
 }
 
-/* Анимация для основного текста */
-@keyframes glitchText {
-  0%,
-  100% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translate(-2px, 2px);
-  }
-  40% {
-    transform: translate(-2px, -2px);
-  }
-  60% {
-    transform: translate(2px, 2px);
-  }
-  80% {
-    transform: translate(2px, -2px);
-  }
+/* Почти всё время логотип спокоен, глитч — короткая вспышка */
+@keyframes glitch-jitter {
+  0%, 91%, 98%, 100% { transform: none; }
+  92% { transform: translate(-1px, 1px); }
+  94% { transform: translate(1px, -1px); }
+  96% { transform: translate(-1px, 0); }
 }
 
-/* Анимация для первого псевдоэлемента */
-@keyframes glitchBefore {
-  0%,
-  100% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translate(3px, -3px);
-  }
-  40% {
-    transform: translate(3px, 3px);
-  }
-  60% {
-    transform: translate(-3px, -3px);
-  }
-  80% {
-    transform: translate(-3px, 3px);
-  }
+@keyframes glitch-ghost-a {
+  0%, 91%, 99%, 100% { opacity: 0; transform: none; }
+  93% { opacity: 0.8; transform: translate(3px, -2px); }
+  95% { opacity: 0.45; transform: translate(-2px, 1px); }
+  97% { opacity: 0.65; transform: translate(2px, 1px); }
 }
 
-/* Анимация для второго псевдоэлемента */
-@keyframes glitchAfter {
-  0%,
-  100% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translate(-3px, 3px);
-  }
-  40% {
-    transform: translate(-3px, -3px);
-  }
-  60% {
-    transform: translate(3px, 3px);
-  }
-  80% {
-    transform: translate(3px, -3px);
-  }
+@keyframes glitch-ghost-b {
+  0%, 91%, 99%, 100% { opacity: 0; transform: none; }
+  93% { opacity: 0.8; transform: translate(-3px, 2px); }
+  95% { opacity: 0.45; transform: translate(2px, -1px); }
+  97% { opacity: 0.65; transform: translate(-2px, -1px); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .logo-glitch,
+  .logo-glitch::before,
+  .logo-glitch::after {
+    animation: none;
+  }
+}

@@ -1,10 +1,11 @@
-/* Дизайн-токены (общие для всех тем): скругления и тени для глубины */
+/* Дизайн-токены (общие для всех тем): скругления, тени, шрифт */
 :root {
   --radius: 10px;
-  --radius-sm: 7px;
-  --radius-lg: 16px;
+  --radius-sm: 8px;
+  --radius-lg: 18px;
   --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.20);
-  --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.30);
+  --shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.35);
+  --font-main: "Segoe UI", "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
 }
 
 /* Без анимации по умолчанию */

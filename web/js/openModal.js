@@ -1,4 +1,15 @@
 /**
+ * Закрывает модальное окно с изображением
+ */
+const closeModal = () => {
+  const modal = document.getElementById("screenshotModal")
+  if (modal) {
+    modal.style.display = "none"
+  }
+  document.body.classList.remove("no-scroll")
+}
+
+/**
  * Открывает модальное окно с изображением
  * @param {HTMLImageElement} img - Изображение для отображения в модальном окне
  */
@@ -17,16 +28,12 @@ const openModal = (img) => {
   modalImg.alt = img.alt || "Увеличенное изображение"
 
   // Закрытие модального окна при клике на крестик
-  span.onclick = () => {
-    modal.style.display = "none"
-    body.classList.remove("no-scroll")
-  }
+  span.onclick = closeModal
 
   // Закрытие модального окна при клике вне изображения
   window.onclick = (event) => {
     if (event.target === modal) {
-      modal.style.display = "none"
-      body.classList.remove("no-scroll")
+      closeModal()
     }
   }
 }
@@ -36,6 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", (event) => {
     if (event.target.classList.contains("screenshot")) {
       openModal(event.target)
+    }
+  })
+
+  // Закрытие модального окна по Escape
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeModal()
     }
   })
 })
